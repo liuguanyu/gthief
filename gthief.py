@@ -5,6 +5,20 @@
 from Fetcher import *
 from Parser import *
 
+def deal_with_img(img_list) :
+    imgf = ImageFetcher()
+
+    img_local = []
+    for absolute , ori in img_list:
+        img = imgf.fetch(absolute)
+
+        img_local.append({
+            "ori" : ori ,
+            "absolute" : img            
+        })
+
+    return img_local  
+
 def main() :
     url = "http://www.6egame.com/game/106/"
     cf = CommonFetcher()
@@ -13,14 +27,9 @@ def main() :
     rp = ResourcesParser(url)
     resources = rp.parse(html)
 
-    imgf = ImageFetcher()
-
-    for absolute , ori in resources["img"] :
-        img = imgf.fetch(absolute)
-        print absolute
-        print "==="
-        print img
-        print "\n"
+    resources["img"] = deal_with_img(resources["img"]) 
+    
+    print resources  
 
 if __name__ == "__main__" : 
    main()  

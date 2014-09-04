@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 # -*- author:liuguanyu -*-
-# 抓取小游戏工厂方法，外界直接和这个类打交道
+# 抓取小游戏资源的一般类
 
 import urllib2
 
@@ -12,6 +12,7 @@ class CommonFetcher (object) :
         pass
 
     def fetch (self , url):
+        #print "正在从" + url + "下载"
         opener = urllib2.build_opener()
         opener.addheaders = [self.headers]
         return opener.open(url).read() 

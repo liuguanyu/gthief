@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 # -*- author:liuguanyu -*-
-# 抓取小游戏工厂方法，外界直接和这个类打交道
+# 抓取小游戏图片方法
 
 from commonfetcher import *
-import base64
 from Util import *
 
 class ImageFetcher(CommonFetcher) :
@@ -12,7 +11,10 @@ class ImageFetcher(CommonFetcher) :
 
     def fetch (self , url):
         data = super(ImageFetcher , self).fetch(url)
-        return self.pbc.save(data) 
+        #print "正在上传到图床"
+        new_url = self.pbc.save(data)
+        #print "新url为" + new_url        
+        return new_url 
 
 if __name__ == "__main__" :
     foo = CommonFetcher()

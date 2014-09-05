@@ -65,17 +65,17 @@ class SixeScriptModifier (CommonScriptModifier):
         self.text = re.sub(repl ,  __modify_home_url , self.text , re.IGNORECASE | re.DOTALL); 
 
         self.text = self.text.replace(OWNER_NAME , THIEF_NAME)
-        '''
-        repl = 'dataForWeixin\s*?=\s*?{.*?\"url\"\s*?:\s*?([\'"].*?[\'"]).*?}'
+                
+        repl = 'dataForWeixin\s*?=\s*?\{[\s\S.]*?[\'"]url[\'"][\s\S.]*?:[\s\S.]*?([\'"].*?[\'"])[\s\S.]*?\}'
 
         def __modify_current_url(mch):
-            print mch.group(0)
+            print mch.group(1)
+
             return mch.group(0).replace(mch.group(1) , CURRENT_URL)
 
         self.text = re.sub(repl , __modify_current_url , self.text , re.IGNORECASE | re.DOTALL | re.MULTILINE)     
 
-        #print self.text  
-        '''  
+        #print self.text   
         return self   
 
     # 替换游戏主在脚本里的图片  
